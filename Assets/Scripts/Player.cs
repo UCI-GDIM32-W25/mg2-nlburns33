@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         {
             
             Instantiate(_coinPrefab, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
-            _timer = Random.Range(1, 4);
+            _timer = Random.Range(0f, 3f);
         }
         
 
@@ -53,11 +53,12 @@ public class Player : MonoBehaviour
         {
             _isGrounded = true;
         }
-        else
-        {
-            Debug.Log("Touching coin");
-            _points++;
-            collision.gameObject.SetActive(false);
-        }
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Touching coin");
+        _points++;
+        Destroy(collision.gameObject);
+        _text.text = "Points: " + _points;
     }
 }

@@ -16,5 +16,10 @@ public class Coin : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.left * _speed * Time.deltaTime);
+        if (transform.position.x < -5)
+        {
+            Debug.Log("Destroying");
+            Destroy(gameObject);
+        }
     }
 }
